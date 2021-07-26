@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useContext } from 'react';
+
+var MyContext = createContext();
+
+function Login() {
+  return (
+    <MyButton />
+  )
+}
+
+function MyButton() {
+  var ctx = useContext(MyContext);
+  return (
+    <button> {ctx.btnText} </button>
+  )
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MyContext.Provider value={ { btnText: "Olá Mundo" } }>
+      <Login/>
+    </MyContext.Provider>
   );
 }
 
